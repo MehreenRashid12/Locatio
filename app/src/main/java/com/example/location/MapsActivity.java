@@ -4,6 +4,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     EditText e;
     Button s;
     GoogleApiClient client;
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        currenLocation(locationManager);
+
+
     }
 
 
@@ -61,9 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // gotoLocation(23.777176, 90.399452);
-
-
     }
 
     public void gotoLocation(double latitude , double longitude) {
@@ -84,6 +88,66 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             gotoLocation(lat,lon);
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+
+    }
+
+    public void currenLocation(LocationManager locationManager){
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    gotoLocation(latitude,longitude);
+                }
+
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String s) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String s) {
+
+                }
+            });
+
+        }
+
+        else  if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    gotoLocation(latitude,longitude);
+                }
+
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String s) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String s) {
+
+                }
+            });
+
         }
 
     }
