@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2ef279"
+    tools:context=".homeScreenActivity">
+
+    <ImageButton
+        android:id="@+id/toDoListButtonID"
+        android:layout_width="180dp"
+        android:layout_height="275dp"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginTop="-5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/to_do_list"
+        android:backgroundTint="#a3659f"
+        />
+
+    <ImageButton
+        android:id="@+id/geoSilencerButtonID"
+        android:layout_width="345dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginLeft="-8dp"
+        android:layout_marginRight="-5dp"
+        android:layout_toRightOf="@+id/toDoListButtonID"
+        android:scaleType="fitXY"
+        android:src="@drawable/geo_silencer"
+        android:backgroundTint="#a0def9"
+        />
+
+    <ImageButton
+        android:layout_width="345dp"
+        android:layout_height="290dp"
+        android:layout_marginLeft="-8dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginRight="-5dp"
+        android:layout_toRightOf="@+id/toDoListButtonID"
+        android:scaleType="fitXY"
+        android:src="@drawable/geo_alarm"
+        android:backgroundTint="#feb968"
+        />
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="180dp"
+        android:layout_height="205dp"
+        android:src="@drawable/settings"
+        android:scaleType="fitXY"
+        android:layout_marginTop="255dp"
+        android:layout_marginLeft="-5dp"
+
+        />
+    <ImageButton
+        android:layout_width="280dp"
+        android:layout_height="165dp"
+        android:src="@drawable/exitbutton"
+        android:scaleType="fitXY"
+
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="-6dp"
+        android:layout_marginRight="-5dp"
+
+        android:backgroundTint="#2ef279"
+        />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_toRightOf="@+id/toDoListButtonID"
+        android:layout_marginTop="460dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginRight="-10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/teddybear"
+        android:backgroundTint="#2ef279"
+
+
+        />
+</RelativeLayout>
