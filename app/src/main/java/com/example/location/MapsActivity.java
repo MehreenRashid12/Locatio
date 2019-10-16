@@ -1,12 +1,16 @@
 package com.example.location;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,13 +36,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     GoogleApiClient client;
     LocationManager locationManager;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_layout);
 
-        e = (EditText)findViewById(R.id.edittext);
-        s = (Button)findViewById(R.id.searchbutton) ;
+        e = (EditText) findViewById(R.id.edittext);
+        s = (Button) findViewById(R.id.searchbutton);
 
         s.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,39 +75,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
     }
 
-    public void gotoLocation(double latitude , double longitude) {
+    public void gotoLocation(double latitude, double longitude) {
         LatLng latlng = new LatLng(latitude, longitude);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, 15);
         mMap.addMarker(new MarkerOptions().position(latlng));
         mMap.moveCamera(update);
     }
 
-    public void findonMap(View v){
+    public void findonMap(View v) {
         Geocoder geocoder = new Geocoder(this);
         try {
-            List<Address> adlist = geocoder.getFromLocationName(e.getText().toString(),1);
+            List<Address> adlist = geocoder.getFromLocationName(e.getText().toString(), 1);
             Address address = adlist.get(0);
             String locality = address.getLocality();
             double lat = address.getLatitude();
             double lon = address.getLongitude();
-            gotoLocation(lat,lon);
+            gotoLocation(lat, lon);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
     }
 
-    public void currenLocation(LocationManager locationManager){
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void currenLocation(LocationManager locationManager) {
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    Activity#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for Activity#requestPermissions for more details.
+                return;
+            }
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    gotoLocation(latitude,longitude);
+                    gotoLocation(latitude, longitude);
                 }
 
                 @Override
