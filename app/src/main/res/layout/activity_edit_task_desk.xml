@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="#feeffd"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/textViewTop"
+
+        >
+
+
+        <TextView
+
+            android:id="@+id/titlePage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Task Details"
+            android:textSize="26sp"
+            android:textColor="#FFF"
+            android:layout_marginTop="35dp"
+            android:textAlignment="center"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/berlin_sans_fb_regular"
+
+            ></TextView>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:backgroundTint="#feeffd"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            ></View>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bgitemdoes"
+        android:orientation="vertical"
+        android:paddingBottom="18dp"
+        android:paddingTop="18dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="-80dp"
+        >
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/addtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textSize="22sp"
+                android:text="Add title"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:textColor="@color/textViewTop"
+
+                ></TextView>
+            <EditText
+                android:id="@+id/titledoes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:hint="What will you do?"
+                android:textColorHint="#B5B5B5"
+                android:textColor="@color/textViewTop"
+                android:background="@drawable/biginputtask"
+                android:text=""
+                android:textSize="20sp"
+                android:maxLength="30"
+                ></EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/adddate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textSize="22sp"
+                android:text="Description"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:textColor="@color/textViewTop"
+
+
+                ></TextView>
+            <EditText
+                android:id="@+id/datedoes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:textSize="20sp"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:hint="Describe your work here"
+                android:textColorHint="#B5B5B5"
+                android:textColor="@color/textViewTop"
+                android:background="@drawable/biginputtask"
+                android:text=""
+                ></EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/addlocaton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:textSize="22sp"
+                android:text="Add Location"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:textColor="@color/textViewTop"
+
+                ></TextView>
+            <EditText
+                android:id="@+id/locationdoes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:fontFamily="@font/berlin_sans_fb_regular"
+                android:hint="Where will you do it?"
+                android:textColorHint="#B5B5B5"
+                android:textColor="@color/textViewTop"
+                android:background="@drawable/biginputtask"
+                android:text=""
+                android:textSize="20sp"
+                android:maxLength="30"
+                ></EditText>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSaveUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Save Update"
+        android:textColor="#FFF"
+        android:textAllCaps="false"
+        android:fontFamily="@font/berlin_sans_fb_regular"
+        android:textSize="25sp"
+        android:background="@drawable/bgbtcreate"
+        />
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bgbtcancel"
+        android:fontFamily="@font/berlin_sans_fb_regular"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Delete"
+        android:textColor="#585757"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        />
+
+
+
+
+
+
+
+</LinearLayout>
+
+    <!--<EditText
+                android:background="#feeffd"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="Write your does"
+                android:textColorHint="#cbd5e4"
+
+
+                ></EditText>-->
