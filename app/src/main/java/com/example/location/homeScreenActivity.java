@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 public class homeScreenActivity extends AppCompatActivity {
     ImageButton silencerButton;
     ImageButton alarmButton;
+    ImageButton toDoListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class homeScreenActivity extends AppCompatActivity {
 
         silencerButton = (ImageButton)findViewById(R.id.geoSilencerButtonID);
         alarmButton = (ImageButton)findViewById(R.id.geoAlarmButtonID);
+        toDoListButton=findViewById(R.id.toDoListButtonID);
 
         silencerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +35,13 @@ public class homeScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent alarmIntent = new Intent(homeScreenActivity.this,MapsActivity.class);
                 startActivity(alarmIntent);
+            }
+        });
+        toDoListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toDOIntent = new Intent(homeScreenActivity.this,toDoList.class);
+                startActivity(toDOIntent);
             }
         });
 
