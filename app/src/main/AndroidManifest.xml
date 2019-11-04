@@ -20,7 +20,6 @@
         <activity android:name=".EditTaskDesk" />
         <activity android:name=".NewTaskAdd" />
         <activity android:name=".MapsActivityIgnored" />
-        <activity android:name=".MapsActivity" />
 
 
         <activity android:name=".toDoList" />

@@ -28,6 +28,7 @@ public class MapsActivityIgnored extends AppCompatActivity {
                 String value3=btnLongitude.getText().toString();
 
 
+
                 Intent intent=new Intent(MapsActivityIgnored.this,NewTaskAdd.class);
                 intent.putExtra("keyText",value);
                 intent.putExtra("keyLatitude",value2);
