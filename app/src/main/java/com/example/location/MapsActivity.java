@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -23,6 +25,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -35,7 +38,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Button s;
     GoogleApiClient client;
     LocationManager locationManager;
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        currenLocation(locationManager);
+        //currenLocation(locationManager);
 
 
     }
@@ -75,22 +77,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
     }
 
-    public void gotoLocation(double latitude, double longitude) {
+    public void gotoLocation(double latitude, double longitude, final String add) {
         LatLng latlng = new LatLng(latitude, longitude);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latlng, 15);
         mMap.addMarker(new MarkerOptions().position(latlng));
         mMap.moveCamera(update);
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Intent intent = new Intent(MapsActivity.this,NewTaskAdd.class);
+                double latitude =  marker.getPosition().latitude;
+                double longitude =  marker.getPosition().longitude;
+                intent.putExtra("keyText",add);
+                intent.putExtra("keyLatitude", String.valueOf(latitude));
+                intent.putExtra("keyLongitude", String.valueOf(longitude));
+                setResult(1,intent);
+                finish();
+                return true;
+            }
+        });
     }
 
     public void findonMap(View v) {
         Geocoder geocoder = new Geocoder(this);
         try {
-            List<Address> adlist = geocoder.getFromLocationName(e.getText().toString(), 1);
+            String searchAddress = e.getText().toString();
+            List<Address> adlist = geocoder.getFromLocationName(searchAddress, 1);
             Address address = adlist.get(0);
             String locality = address.getLocality();
             double lat = address.getLatitude();
             double lon = address.getLongitude();
-            gotoLocation(lat, lon);
+            gotoLocation(lat, lon, searchAddress );
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -118,7 +135,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onLocationChanged(Location location) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    gotoLocation(latitude, longitude);
                 }
 
                 @Override
@@ -145,7 +161,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onLocationChanged(Location location) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    gotoLocation(latitude,longitude);
                 }
 
                 @Override

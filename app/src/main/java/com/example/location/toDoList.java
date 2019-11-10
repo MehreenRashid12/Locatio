@@ -32,6 +32,7 @@ public class toDoList extends AppCompatActivity {
     TextView titlePage,subTitlePage,endPage;
     Button btnAddNew,btnMap;
     DatabaseReference reference;
+
     RecyclerView ourdoes;
     ArrayList<MyDoes> list;
     DoesAdapter doesAdapter;

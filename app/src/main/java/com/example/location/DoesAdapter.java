@@ -2,6 +2,7 @@ package com.example.location;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,13 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder> 
         final String getDateDoes=myDoes.get(position).getDateDoes();
         final String getKeyDoes=myDoes.get(position).getKeyDoes();
         final String getLocationDoes=myDoes.get(position).getLocationDoes();
+
         final String getLatitudeDoes=myDoes.get(position).getLatitudeDoes();
         final String getLongitudeDoes=myDoes.get(position).getLongitudeDoes();
+       /* Log.d("key","null");*/
+
+
+
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
