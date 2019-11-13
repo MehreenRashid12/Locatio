@@ -31,51 +31,13 @@ public class BackgroundService extends BroadcastReceiver {
             if(ACTION_PROCESS_UPDATE.equals(action)){
                 LocationResult result = LocationResult.extractResult(intent);
                 if(result!=null){
-
                     Location location = result.getLastLocation();
-                    final double latitude = location.getLatitude();
-                    final double longitude = location.getLongitude();
-
-                    reference= FirebaseDatabase.getInstance().getReference().child("DoesApp");
-                    reference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            //set code to retrieve data and and replace layout
-                            for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                            {
-                                MyDoes myDoes=dataSnapshot1.getValue(MyDoes.class);
-                                String latitudeDoes=myDoes.latitudeDoes;
-                                String longitudeDoes=myDoes.longitudeDoes;
-                                double latDoes = Double.valueOf(latitudeDoes);
-                                double lonDoes = Double.valueOf(longitudeDoes);
-
-                                if(latitude>(latDoes-0.001) && latitude<(latDoes+0.001) && longitude>(lonDoes-0.001) && longitude<(lonDoes+0.001)){
-                                    Toast.makeText(context,"You have reached",Toast.LENGTH_SHORT).show();
-
-                                }
-
-
-
-                            }
-
-
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-
-                       /* @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            //set code to show an error
-                            Toast.makeText(getApplicationContext(),"No data",Toast.LENGTH_SHORT).show();
-                        }*/
-                    });
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    String ls = String.valueOf(latitude);
+                    String ls1 = String.valueOf(longitude);
+                    String loc = ls + "/" + ls1;
+                    Toast.makeText(context,loc,Toast.LENGTH_SHORT).show();
                 }
             }
         }
