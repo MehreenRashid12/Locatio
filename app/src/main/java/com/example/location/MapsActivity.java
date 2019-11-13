@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_layout);
         instance = this;
-        updateLocation();
+        //updateLocation();
 
         e = (EditText) findViewById(R.id.edittext);
         s = (Button) findViewById(R.id.searchbutton);
