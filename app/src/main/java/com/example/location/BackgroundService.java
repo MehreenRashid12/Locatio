@@ -39,7 +39,8 @@ public class BackgroundService extends BroadcastReceiver {
                     Toast.makeText(context, loc, Toast.LENGTH_SHORT).show();
                     final String latiti = lati;
                     final String longigi = longi;
-                    System.out.println(latiti + longigi);
+
+
 
 
                 }

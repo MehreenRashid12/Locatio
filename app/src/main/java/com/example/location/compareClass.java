@@ -18,6 +18,12 @@ public class compareClass extends Activity {
     DatabaseReference referenceDoes;
     DatabaseReference referenceSilencer;
     DatabaseReference referenceAlarm;
+    /*String latiti,longigi;*/
+    /*compareClass(String latiti,String longigi){
+        this.latiti=latiti;
+        this.longigi=longigi;
+
+    }*/
 
 
 
@@ -27,7 +33,9 @@ public class compareClass extends Activity {
         return instance;
     }
 
-    public void toDoListCompare(double latitude, double longitude){
+    public void toDoListCompare(final String latiti, final String longigi){
+        Toast.makeText(compareClass.this,"lalalala",Toast.LENGTH_SHORT);
+
         referenceDoes= FirebaseDatabase.getInstance().getReference().child("DoesApp");
         referenceDoes.addValueEventListener(new ValueEventListener() {
             @Override
@@ -39,6 +47,17 @@ public class compareClass extends Activity {
                     MyDoes myDoes=dataSnapshot1.getValue(MyDoes.class);
                     String latitude=myDoes.latitudeDoes;
                     String longitude=myDoes.longitudeDoes;
+
+                    String la_short=latitude.substring(0,5);
+                    String lo_short=longitude.substring(0,5);
+
+                    String latiti_short=latiti.substring(0,5);
+                    String longigi_short=longigi.substring(0,5);
+
+                    if(la_short.equals(latiti_short)){
+                        Toast.makeText(compareClass.this,"lalala",Toast.LENGTH_SHORT).show();
+
+                    }
 
 
 
@@ -70,9 +89,7 @@ public class compareClass extends Activity {
                     String slon=mySilencers.longitude;
                     Double lat = Double.valueOf(slat);
                     Double lon = Double.valueOf(slon);
-                    if(latitude1 == lat && longitude1 == lon){
-                        Toast.makeText(getApplicationContext(),"You have reached",Toast.LENGTH_SHORT).show();
-                    }
+
 
 
 
