@@ -1,81 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2ef279"
+    android:orientation="vertical"
+    android:background="#470243"
+
     tools:context=".homeScreenActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+        <ImageButton
+            android:id="@+id/toDoListButtonID"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
 
-    <ImageButton
-        android:id="@+id/toDoListButtonID"
-        android:layout_width="180dp"
-        android:layout_height="275dp"
-        android:layout_marginLeft="-5dp"
-        android:layout_marginTop="-5dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/to_do_list"
-        android:backgroundTint="#a3659f"
-        />
+            android:layout_width="170dp"
+            android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/to_do_list1"
+            android:backgroundTint="#470243"
 
-    <ImageButton
-        android:id="@+id/geoSilencerButtonID"
-        android:layout_width="345dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginLeft="-8dp"
-        android:layout_marginRight="-5dp"
-        android:layout_toRightOf="@+id/toDoListButtonID"
-        android:scaleType="fitXY"
-        android:src="@drawable/geo_silencer"
-        android:backgroundTint="#a0def9"
-        />
+            />
 
-    <ImageButton
-        android:id="@+id/geoAlarmButtonID"
-        android:layout_width="345dp"
-        android:layout_height="290dp"
-        android:layout_marginLeft="-8dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginRight="-5dp"
-        android:layout_toRightOf="@+id/toDoListButtonID"
-        android:scaleType="fitXY"
-        android:src="@drawable/geo_alarm"
-        android:backgroundTint="#feb968"
-        />
-    <ImageButton
-        android:id="@+id/settingsButton"
-        android:layout_width="180dp"
-        android:layout_height="205dp"
-        android:src="@drawable/settings"
-        android:scaleType="fitXY"
-        android:layout_marginTop="255dp"
-        android:layout_marginLeft="-5dp"
-
-        />
-    <ImageButton
-        android:layout_width="280dp"
-        android:layout_height="165dp"
-        android:src="@drawable/exitbutton"
-        android:scaleType="fitXY"
-
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="-6dp"
-        android:layout_marginRight="-5dp"
-
-        android:backgroundTint="#2ef279"
-        />
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_toRightOf="@+id/toDoListButtonID"
-        android:layout_marginTop="460dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginRight="-10dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/teddybear"
-        android:backgroundTint="#2ef279"
+        <ImageButton
+            android:id="@+id/geoSilencerButtonID"
+            android:layout_width="170dp"
+            android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="5dp"
 
 
-        />
-</RelativeLayout>
+
+            android:scaleType="fitXY"
+            android:src="@drawable/silencer"
+
+            android:backgroundTint="#470243"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+        <ImageButton
+            android:id="@+id/geoAlarmButtonID"
+            android:layout_width="170dp"
+            android:layout_height="210dp"
+
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="5dp"
+
+
+            android:scaleType="fitXY"
+            android:src="@drawable/alarm1"
+            android:backgroundTint="#470243"
+
+
+            />
+        <ImageButton
+            android:id="@+id/helpButton"
+            android:layout_width="170dp"
+            android:layout_height="210dp"
+            android:src="@drawable/help"
+
+            android:scaleType="fitXY"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="#470243"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+
+        <ImageButton
+            android:id="@+id/exitButtonID"
+            android:layout_marginTop="25dp"
+            android:layout_width="220dp"
+            android:layout_height="90dp"
+            android:src="@drawable/exit"
+
+
+            android:scaleType="centerInside"
+
+
+
+            android:backgroundTint="#470243"
+            />
+    </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>
+    <!--#470243-->
+    <!--#50024d-->

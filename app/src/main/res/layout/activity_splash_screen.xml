@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".splashScreen"
-    android:background="#000"
+    android:background="#350132"
+
     android:orientation="vertical"
     android:gravity="center"
     >
@@ -14,7 +15,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:src="@drawable/locatio_icon"
+        android:src="@drawable/locatio_icon_purple4"
         android:layout_marginBottom="15dp"
         ></ImageView>
     <TextView
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Locatio"
         android:fontFamily="@font/berlin_sans_fb_regular"
-        android:textColor="#FFFF66"
+        android:textColor=" #fdddf9"
         android:textSize="40sp"
         android:textStyle="bold"
         >
