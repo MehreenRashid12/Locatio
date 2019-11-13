@@ -47,7 +47,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder> 
 
         final String getLatitudeDoes=myDoes.get(position).getLatitudeDoes();
         final String getLongitudeDoes=myDoes.get(position).getLongitudeDoes();
-       /* Log.d("key","null");*/
+
         myViewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
 
 
