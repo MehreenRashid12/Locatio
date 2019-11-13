@@ -20,26 +20,26 @@ import com.google.firebase.database.ValueEventListener;
 public class BackgroundService extends BroadcastReceiver {
 
     public static String ACTION_PROCESS_UPDATE = "com.example.currentlocation.UPDATE_LOCATION";
-    DatabaseReference reference;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
 
-        if(intent!= null){
+        if (intent != null) {
 
             String action = intent.getAction();
-            if(ACTION_PROCESS_UPDATE.equals(action)){
+            if (ACTION_PROCESS_UPDATE.equals(action)) {
                 LocationResult result = LocationResult.extractResult(intent);
-                if(result!=null){
+                if (result != null) {
                     Location location = result.getLastLocation();
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-//                    String ls = String.valueOf(latitude);
-//                    String ls1 = String.valueOf(longitude);
-//                    String loc = ls + "/" + ls1;
-//                    Toast.makeText(context,loc,Toast.LENGTH_SHORT).show();
-
-                    compareClass.getInstance().silencerCompare(latitude,longitude);
+                    final String lati = String.valueOf(latitude);
+                    String longi = String.valueOf(longitude);
+                    String loc = lati + "/" + longi;
+                    Toast.makeText(context, loc, Toast.LENGTH_SHORT).show();
+                    final String latiti = lati;
+                    final String longigi = longi;
+                    System.out.println(latiti + longigi);
 
 
                 }
