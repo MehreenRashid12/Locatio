@@ -21,29 +21,29 @@
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/datedoes"
+                android:id="@+id/alarmTitle"
 
                 android:fontFamily="@font/berlin_sans_fb_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginLeft="20dp"
-                android:textSize="20sp"
+                android:textSize="22dp"
                 android:textColor="#590255"
-                android:text="Department"
+                android:text="Class in Department"
                 ></TextView>
             <TextView
-                android:id="@+id/locationdoes"
+                android:id="@+id/alarmLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/berlin_sans_fb_regular"
                 android:textColor=" #b2beb5 "
 
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="20dp"
-                android:text="Location"
+                android:text="Mukarram Bhaban"
 
-                android:textSize="16sp"
+                android:textSize="18sp"
 
 
                 ></TextView>
@@ -52,43 +52,7 @@
 
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-            <TextView
 
-                android:fontFamily="@font/berlin_sans_fb_regular"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-
-                android:textSize="18sp"
-
-
-
-                android:text="Task:"
-                />
-
-            <TextView
-                android:id="@+id/titledoes"
-                android:fontFamily="@font/berlin_sans_fb_regular"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-
-                android:textSize="18sp"
-                android:textColor="#72036c"
-
-
-                android:text="Buy milk okay?"
-                />
-
-        </LinearLayout>
 
 
 

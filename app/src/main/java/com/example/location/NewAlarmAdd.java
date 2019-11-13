@@ -1,5 +1,8 @@
-//NewTaskAdd
 package com.example.location;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,37 +19,38 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
-public class NewTaskAdd extends AppCompatActivity {
+public class NewAlarmAdd extends AppCompatActivity {
+
     String valueLatitude,valueLongitude;
-    TextView titlepage,addtitle,adddate;
-    EditText titledoes,datedoes;
+    TextView titlepage,addtitle;
+    EditText alarmtitle;
     TextView locationdoes;
     Button btnSaveTask,btnCancel,btnMaps;
     DatabaseReference reference;
     Integer doesNum=new Random().nextInt();
-    String keydoes=Integer.toString(doesNum);
+    String key=Integer.toString(doesNum);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_task_add);
+        setContentView(R.layout.activity_new_alarm_add);
 
 
         titlepage=findViewById(R.id.titlePage);
 
         addtitle=findViewById(R.id.addtitle);
-        adddate=findViewById(R.id.adddate);
 
-        titledoes=findViewById(R.id.titledoes);
-        datedoes=findViewById(R.id.datedoes);
+
+        alarmtitle=findViewById(R.id.alarmTitle);
+
 
         btnSaveTask=findViewById(R.id.btnSaveTask);
         btnCancel=findViewById(R.id.btnCancel);
-        btnMaps=findViewById(R.id.maptodolistbutton);
+        btnMaps=findViewById(R.id.mapalarmbutton);
 
         locationdoes=findViewById(R.id.locationdoes);
-        reference= FirebaseDatabase.getInstance().getReference().child("DoesApp").child("Does"+doesNum);
+        reference= FirebaseDatabase.getInstance().getReference().child("Alarm").child("Alarm"+doesNum);
 
 
         btnSaveTask.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +61,13 @@ public class NewTaskAdd extends AppCompatActivity {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getRef().child("titleDoes").setValue(titledoes.getText().toString());
-                        dataSnapshot.getRef().child("dateDoes").setValue(datedoes.getText().toString());
-                        dataSnapshot.getRef().child("locationDoes").setValue(locationdoes.getText().toString());
-                        dataSnapshot.getRef().child("keyDoes").setValue(keydoes);
-                        dataSnapshot.getRef().child("latitudeDoes").setValue(valueLatitude);
-                        dataSnapshot.getRef().child("longitudeDoes").setValue(valueLongitude);
-                        Intent a=new Intent(NewTaskAdd.this,toDoList.class);
+                        dataSnapshot.getRef().child("alarmTitle").setValue(alarmtitle.getText().toString());
+
+                        dataSnapshot.getRef().child("location").setValue(locationdoes.getText().toString());
+                        dataSnapshot.getRef().child("key").setValue(key);
+                        dataSnapshot.getRef().child("latitude").setValue(valueLatitude);
+                        dataSnapshot.getRef().child("longitude").setValue(valueLongitude);
+                        Intent a=new Intent(NewAlarmAdd.this,alarm.class);
                         startActivity(a);
                     }
 
@@ -81,7 +81,7 @@ public class NewTaskAdd extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a=new Intent(NewTaskAdd.this,toDoList.class);
+                Intent a=new Intent(NewAlarmAdd.this,alarm.class);
                 startActivity(a);
 
             }
@@ -89,7 +89,7 @@ public class NewTaskAdd extends AppCompatActivity {
         btnMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(NewTaskAdd.this,MapsActivity.class);
+                Intent intent=new Intent(NewAlarmAdd.this,MapsActivity.class);
 
                 startActivityForResult(intent,1);
             }
@@ -115,7 +115,7 @@ public class NewTaskAdd extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Intent moveback =
-                new Intent(NewTaskAdd.this, toDoList.class);
+                new Intent(NewAlarmAdd.this, alarm.class);
         startActivity(moveback);
         finish();
     }
