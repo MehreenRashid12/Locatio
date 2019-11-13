@@ -34,10 +34,14 @@ public class BackgroundService extends BroadcastReceiver {
                     Location location = result.getLastLocation();
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    String ls = String.valueOf(latitude);
-                    String ls1 = String.valueOf(longitude);
-                    String loc = ls + "/" + ls1;
-                    Toast.makeText(context,loc,Toast.LENGTH_SHORT).show();
+//                    String ls = String.valueOf(latitude);
+//                    String ls1 = String.valueOf(longitude);
+//                    String loc = ls + "/" + ls1;
+//                    Toast.makeText(context,loc,Toast.LENGTH_SHORT).show();
+
+                    compareClass.getInstance().silencerCompare(latitude,longitude);
+
+
                 }
             }
         }
