@@ -19,7 +19,9 @@ public class compareClass extends Activity {
     DatabaseReference referenceSilencer;
     DatabaseReference referenceAlarm;
 
-    public void compareClass
+
+
+
 
     public static com.example.location.compareClass getInstance() {
         return instance;
@@ -54,7 +56,7 @@ public class compareClass extends Activity {
             }
         });
     }
-    public void silencerCompare(final double latitude, final double longitude){
+    public void silencerCompare(final double latitude1, final double longitude1){
         referenceSilencer= FirebaseDatabase.getInstance().getReference().child("Silencer");
         referenceSilencer.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,7 +70,7 @@ public class compareClass extends Activity {
                     String slon=mySilencers.longitude;
                     Double lat = Double.valueOf(slat);
                     Double lon = Double.valueOf(slon);
-                    if(latitude == lat && longitude == lon){
+                    if(latitude1 == lat && longitude1 == lon){
                         Toast.makeText(getApplicationContext(),"You have reached",Toast.LENGTH_SHORT).show();
                     }
 
