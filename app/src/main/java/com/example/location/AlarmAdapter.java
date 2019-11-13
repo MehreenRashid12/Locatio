@@ -18,44 +18,39 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder> {
+public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<MyDoes> myDoes;
+    ArrayList<MyAlarms> myAlarms;
 
-    public DoesAdapter(Context c, ArrayList<MyDoes> p){
+    public AlarmAdapter(Context c, ArrayList<MyAlarms> p){
         context =c;
-        myDoes=p;
+        myAlarms=p;
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.name_of_does,viewGroup,false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.name_of_alarms,viewGroup,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
-        myViewHolder.titleDoes.setText(myDoes.get(position).getTitleDoes());
-        myViewHolder.dateDoes.setText(myDoes.get(position).getDateDoes());
-        myViewHolder.locationDoes.setText(myDoes.get(position).getLocationDoes());
+        myViewHolder.alarmTitle.setText(myAlarms.get(position).getAlarmTitle());
+
+        myViewHolder.location.setText(myAlarms.get(position).getLocation());
+        final String getKeyDoes=myAlarms.get(position).getKey();
 
 
-        final String getTitleDoes=myDoes.get(position).getTitleDoes();
-        final String getDateDoes=myDoes.get(position).getDateDoes();
-        final String getKeyDoes=myDoes.get(position).getKeyDoes();
-        final String getLocationDoes=myDoes.get(position).getLocationDoes();
 
-        final String getLatitudeDoes=myDoes.get(position).getLatitudeDoes();
-        final String getLongitudeDoes=myDoes.get(position).getLongitudeDoes();
-       /* Log.d("key","null");*/
+
         myViewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
-                myDoes.remove(position);
+                myAlarms.remove(position);
                 notifyItemRemoved(position);
-                FirebaseDatabase.getInstance().getReference().child("DoesApp").child("Does"+getKeyDoes).setValue(null);
+                FirebaseDatabase.getInstance().getReference().child("Alarm").child("Alarm"+getKeyDoes).setValue(null);
                 notifyDataSetChanged();
                 Toast.makeText(context, "Delete Successful!", Toast.LENGTH_SHORT).show();
 
@@ -74,20 +69,20 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return myDoes.size();
+        return myAlarms.size();
     }
 
     class MyViewHolder extends ViewHolder{
-        TextView titleDoes,dateDoes,keyDoes,locationDoes;
+        TextView alarmTitle,location;
         ImageButton deleteButton;
 
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
             deleteButton=(ImageButton) itemView.findViewById(R.id.deletebutton);
-            titleDoes= (TextView)itemView.findViewById(R.id.titledoes);
-            dateDoes= (TextView)itemView.findViewById(R.id.datedoes);
-            locationDoes=itemView.findViewById(R.id.locationdoes);
+            alarmTitle= (TextView)itemView.findViewById(R.id.alarmTitle);
+
+            location=itemView.findViewById(R.id.alarmLocation);
 
 
         }

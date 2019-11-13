@@ -1,21 +1,17 @@
 package com.example.location;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,22 +20,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+public class phoneSilencer extends AppCompatActivity {
 
-
-import android.os.Bundle;
-
-public class toDoList extends AppCompatActivity {
     TextView titlePage,subTitlePage,endPage;
     Button btnAddNew,btnMap;
     DatabaseReference reference;
 
-    RecyclerView ourdoes;
-    ArrayList<MyDoes> list;
-    DoesAdapter doesAdapter;
+    RecyclerView oursilencers;
+    ArrayList<MySilencers> list;
+    SilencerAdapter silencerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_to_do_list);
+        setContentView(R.layout.activity_phone_silencer);
         titlePage=findViewById(R.id.titlePageID);
         subTitlePage=findViewById(R.id.subtitlePageID);
         endPage=findViewById(R.id.endPage);
@@ -50,19 +43,19 @@ public class toDoList extends AppCompatActivity {
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a =new Intent(toDoList.this,NewTaskAdd.class);
+                Intent a =new Intent(phoneSilencer.this,NewSilencerAdd.class);
                 startActivity(a);
             }
         });
 
         //working with data
-        ourdoes=findViewById(R.id.ourDoes);
-        ourdoes.setLayoutManager(new LinearLayoutManager(this));
-        list=new ArrayList<MyDoes>();
+        oursilencers=findViewById(R.id.ourSilencers);
+        oursilencers.setLayoutManager(new LinearLayoutManager(this));
+        list=new ArrayList<MySilencers>();
 
         //get data from firebase
 
-        reference= FirebaseDatabase.getInstance().getReference().child("DoesApp");
+        reference= FirebaseDatabase.getInstance().getReference().child("Silencer");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -70,14 +63,14 @@ public class toDoList extends AppCompatActivity {
                 //set code to retrieve data and and replace layout
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
-                    MyDoes p=dataSnapshot1.getValue(MyDoes.class);
+                    MySilencers p=dataSnapshot1.getValue(MySilencers.class);
                     list.add(p);
 
 
                 }
-                doesAdapter =new DoesAdapter(toDoList.this,list);
-                ourdoes.setAdapter(doesAdapter);
-                doesAdapter.notifyDataSetChanged();
+                silencerAdapter=new SilencerAdapter(phoneSilencer.this,list);
+                oursilencers.setAdapter(silencerAdapter);
+                silencerAdapter.notifyDataSetChanged();
 
 
             }
@@ -98,9 +91,9 @@ public class toDoList extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-
+        finish();
         Intent moveback =
-                new Intent(toDoList.this, homeScreenActivity.class);
+                new Intent(phoneSilencer.this, homeScreenActivity.class);
         startActivity(moveback);
 
     }

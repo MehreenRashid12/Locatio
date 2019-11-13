@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_layout);
         instance = this;
-        updateLocation();
+        /*updateLocation();*/
 
         e = (EditText) findViewById(R.id.edittext);
         s = (Button) findViewById(R.id.searchbutton);
@@ -82,17 +82,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void updateLocation(){
+    /*public void updateLocation(){
         buildLocationRequest();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationProviderClient.requestLocationUpdates(locationRequest,getPendingIntent());
-    }
+    }*/
 
-    public PendingIntent getPendingIntent(){
-        Intent intent = new Intent(this,BackgroundService.class);
+    /*public PendingIntent getPendingIntent(){
+        *//*Intent intent = new Intent(this,BackgroundService.class);
         intent.setAction(BackgroundService.ACTION_PROCESS_UPDATE);
-        return PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-    }
+        return PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);*//*
+    }*/
 
     public void buildLocationRequest(){
         locationRequest = new LocationRequest();
