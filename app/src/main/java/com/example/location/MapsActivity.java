@@ -78,7 +78,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
     /*public void updateLocation(){
         buildLocationRequest();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -86,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }*/
 
     /*public PendingIntent getPendingIntent(){
-        *//*Intent intent = new Intent(this,BackgroundService.class);
+     *//*Intent intent = new Intent(this,BackgroundService.class);
         intent.setAction(BackgroundService.ACTION_PROCESS_UPDATE);
         return PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);*//*
     }*/
