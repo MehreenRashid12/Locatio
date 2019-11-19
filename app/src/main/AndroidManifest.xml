@@ -18,13 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewAlarmAdd"></activity>
+        <receiver android:name=".BackgroundService" />
+
+        <activity android:name=".compareActivity"></activity>
+        <activity android:name=".NewAlarmAdd" />
         <activity android:name=".NewSilencerAdd" />
         <activity android:name=".alarm" />
         <activity android:name=".phoneSilencer" />
-
         <receiver android:name=".BackgroundService" />
-
         <activity android:name=".EditTaskDesk" />
         <activity android:name=".NewTaskAdd" />
         <activity android:name=".MapsActivityIgnored" />

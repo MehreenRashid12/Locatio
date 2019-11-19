@@ -19,7 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class BackgroundService extends BroadcastReceiver {
 
-    public static String ACTION_PROCESS_UPDATE = "com.example.currentlocation.UPDATE_LOCATION";
+    public static String ACTION_PROCESS_UPDATE = "com.example.location.UPDATE_LOCATION";
+    Double latitude = 0.0;
+    Double longitude = 0.0;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -31,20 +33,21 @@ public class BackgroundService extends BroadcastReceiver {
                 LocationResult result = LocationResult.extractResult(intent);
                 if (result != null) {
                     Location location = result.getLastLocation();
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
-                    final String lati = String.valueOf(latitude);
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                    String lati = String.valueOf(latitude);
                     String longi = String.valueOf(longitude);
-                    String loc = lati + "/" + longi;
-                    Toast.makeText(context, loc, Toast.LENGTH_SHORT).show();
-                    final String latiti = lati;
-                    final String longigi = longi;
 
-
+                    Intent comp = new Intent(context,compareActivity.class);
+                    comp.putExtra("curLatitude",lati);
+                    comp.putExtra("curLongitude",longi);
+                    comp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(comp);
 
 
                 }
             }
         }
+
     }
 }
