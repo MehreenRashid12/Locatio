@@ -64,12 +64,16 @@ public class BackgroundService extends BroadcastReceiver {
                                 loc.setLatitude(curLat);
                                 loc.setLongitude(curLon);
                                 Log.d("RAHAT", "" + loc.distanceTo(location));
-                                if(loc.distanceTo(location) <= 1000.0) flag = true;
+                                if(loc.distanceTo(location) <= 300.0) flag = true;
 
 
 
                             }
-                            callMeMayBe(context, flag);
+                            //callMeMayBe(context, flag);
+                            if(flag){
+                                Toast.makeText(context, "HIIIIIII", Toast.LENGTH_SHORT).show();
+
+                            }
 
                         }
 
@@ -86,11 +90,7 @@ public class BackgroundService extends BroadcastReceiver {
 
 
 
-//                    Intent comp = new Intent(context,compareActivity.class);
-//                    comp.putExtra("curLatitude",lati);
-//                    comp.putExtra("curLongitude",longi);
-//                    comp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startActivity(comp);
+
 
 
                 }
@@ -99,10 +99,10 @@ public class BackgroundService extends BroadcastReceiver {
 
     }
 
-    void callMeMayBe(Context context,Boolean flag){
-        if(flag){
-            Toast.makeText(context, "HIIIIIII", Toast.LENGTH_SHORT).show();
-
-        }
-    }
+//    void callMeMayBe(Context context,Boolean flag){
+//        if(flag){
+//            Toast.makeText(context, "HIIIIIII", Toast.LENGTH_SHORT).show();
+//
+//        }
+//    }
 }
