@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.location.LocationResult;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.location.NotificationHandler.CHANNEL_1_ID;
+import static com.example.location.NotificationHandler.CHANNEL_2_ID;
+import static com.example.location.NotificationHandler.CHANNEL_3_ID;
 
 public class BackgroundService extends BroadcastReceiver {
 
@@ -37,6 +41,7 @@ public class BackgroundService extends BroadcastReceiver {
     int notifyId1 = 1234;
     int notifyId2 = 5678;
     int notifyId3 = 9678;
+    NotificationManagerCompat notificationManagerCompat;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -51,8 +56,6 @@ public class BackgroundService extends BroadcastReceiver {
                     final Location location = result.getLastLocation();
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
-                    String lati = String.valueOf(latitude);
-                    String longi = String.valueOf(longitude);
 
                     DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("DoesApp");
                     reference.addValueEventListener(new ValueEventListener() {
@@ -84,19 +87,41 @@ public class BackgroundService extends BroadcastReceiver {
 
                                     String ar2=myDoes.getTitleDoes();
                                     String ar33=myDoes.dateDoes;
-                                    sendOnChannel1(ar1,ar2+" "+ar33);
+                                    String title=ar1;
+                                    String message=ar2+" "+ar33;
+                                    sendOnChannel1(ar1,ar2+" "+ar33,context);
+                                   /* NotificationManager notificationManager =
+                                            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+                                    Notification notification = new Notification.Builder(context)
+                                            .setContentTitle(title)
+
+                                            .setContentText(message)
+                                            .setSmallIcon(R.drawable.to_do_list_notification)
+                                            .setChannelId(CHANNEL_1_ID)
+                                            .build();
+                                    // This code is for going to app on clicking the notification.
+                                    notification.contentIntent= PendingIntent.getActivity(context, 0,
+                                            new Intent(context, homeScreenActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                    notificationManager.notify(notifyId1, notification);
+                                    notifyId1++;*/
+
+                                    /*NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                                    showNotification(context, R.drawable.icon, "short", false);*/
                                 }
 
 
 
                             }
                             //callMeMayBe(context, flag);
-                            if(flag){
-                                Toast.makeText(context, "HIIIIIII", Toast.LENGTH_SHORT).show();
-
-
-
-                            }
+//                            if(flag){
+//                                Toast.makeText(context, "HIIIIIII", Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                            }
 
                         }
 
@@ -116,6 +141,8 @@ public class BackgroundService extends BroadcastReceiver {
 
 
 
+
+
                 }
             }
         }
@@ -123,25 +150,26 @@ public class BackgroundService extends BroadcastReceiver {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void sendOnChannel1(String title,String message) {
-
+    public void sendOnChannel1(String title,String message,Context context) {
 
         NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
 
         String channelId = "some_channel_id";
 
 
-        Notification notification = new Notification.Builder(MainActivity.this)
+        Notification notification = new Notification.Builder(context)
                 .setContentTitle(title)
 
                 .setContentText(message)
-                .setSmallIcon(R.drawable.to_do_list_icon_notification)
+                .setSmallIcon(R.drawable.to_do_list_notification)
                 .setChannelId(CHANNEL_1_ID)
                 .build();
         // This code is for going to app on clicking the notification.
-        notification.contentIntent= PendingIntent.getActivity(this, 0,
-                new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.contentIntent= PendingIntent.getActivity(context, 0,
+                new Intent(context, homeScreenActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         notificationManager.notify(notifyId1, notification);
         notifyId1++;

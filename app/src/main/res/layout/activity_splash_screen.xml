@@ -22,7 +22,7 @@
         android:id="@+id/locatioTextID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Locatio"
+        android:text="Locatio!"
         android:fontFamily="@font/berlin_sans_fb_regular"
         android:textColor=" #fdddf9"
         android:textSize="40sp"
